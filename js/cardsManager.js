@@ -98,7 +98,7 @@ class CardsManager {
 
     calculateTotalMunicipios() {
         // Sin filtro activo → valor nominal del contrato (46 municipios)
-        if (this.filteredData.length === this.data.length) return 46;
+        if (this.filteredData.length === this.data.length) return 42;
         return new Set(this.filteredData.map(item => item.MPIO_NOMBRE).filter(Boolean)).size;
     }
 
@@ -1149,5 +1149,6 @@ class CardsManager {
         if (this.container) this.container.innerHTML = '';
     }
 }
+
 
 window.CardsManager = CardsManager;
