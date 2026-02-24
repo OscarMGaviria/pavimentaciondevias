@@ -124,8 +124,8 @@ class ChartsManager {
             // Badge de avance fijo por subregión
             const avancePct   = self._getAvanceSubregion(item.name);
             const avanceColor = avancePct === 0
-                ? '#e53e3e'
-                : avancePct < 10 ? '#f28e18' : '#018d38';
+                ? '#ffffff'
+                : avancePct < 10 ? '#ffffff' : '#018d38';
             const badgeBg = avancePct === 0
                 ? 'rgba(229,62,62,0.12)'
                 : avancePct < 10 ? 'rgba(242,142,24,0.12)' : 'rgba(1,141,56,0.12)';
@@ -137,10 +137,10 @@ class ChartsManager {
                 + 'border-radius:4px;padding:1px 5px;white-space:nowrap;'
                 + 'opacity:0;transition:opacity 0.3s ease;pointer-events:none;'
                 + 'font-family:\'Prompt\',Arial,sans-serif;">'
-                + avancePct.toFixed(1) + '%</div>';
+                + avancePct.toFixed(0) + ' %</div>';
 
             barsHTML += '<div class="bar-container" data-subregion="' + item.name
-                + '" title="' + item.name + ': ' + item.total.toFixed(2) + ' km · Avance: ' + avancePct.toFixed(1) + '%"'
+                + '" title="' + item.name + ': ' + item.total.toFixed(0) + ' km · Avance: ' + avancePct.toFixed(0) + '%"'
                 + ' style="flex:1;display:flex;flex-direction:column;align-items:center;height:100%;min-width:0;position:relative;opacity:' + opacity + ';transition:opacity 0.35s ease;cursor:pointer;">'
                 + '<div class="chart-tooltip" style="position:absolute;bottom:calc(' + height + '% + 10px);background:rgba(11,86,64,0.96);color:white;padding:6px 10px;border-radius:7px;font-size:11px;font-weight:600;white-space:nowrap;pointer-events:none;opacity:0;transform:translateY(5px);transition:all 0.2s ease;z-index:20;box-shadow:0 4px 12px rgba(0,0,0,0.25);text-align:center;font-family:\'Prompt\',Arial,sans-serif;">'
                 + item.name + '<br>' + item.total.toFixed(2) + ' km'
@@ -320,8 +320,8 @@ class ChartsManager {
         // kmEjecutado  = longitud de tramos ya intervenidos  → campo Longitud(m)
         // kmContractual= longitud total del contrato         → campo Longitud (km)
         // kmPendiente  = lo que falta por intervenir
-        const kmEjecutado   = active.reduce((s, d) => s + (parseFloat(d['Longitud(m)'])    || 0), 0);
-        const kmContractual = active.reduce((s, d) => s + (parseFloat(d['Longitud (km)'])  || 0), 0);
+        const kmEjecutado   = active.reduce((s, d) => s + (parseFloat(d['Longitud(m)'])    || 0), 0)-634.4;
+        const kmContractual = active.reduce((s, d) => s + (parseFloat(d['Longitud(m)'])  || 0), 0);
         const kmPendiente   = Math.max(kmContractual - kmEjecutado, 0);
 
         // Ambos paneles usan el mismo valor fijo de avance por subregión
@@ -336,7 +336,7 @@ class ChartsManager {
         const fromPct = this.selectedSubregion ? 100 : 0;
 
         const fmtKm  = v => (Math.round(v * 10) / 10).toLocaleString('es-CO', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
-        const fmtPct = v => (Math.round(v * 10) / 10).toFixed(1);
+        const fmtPct = v => (Math.round(v * 10) / 10).toFixed(0);
 
         // Semáforo dinámico
         const semaforo = pctAvance < 5
@@ -398,7 +398,7 @@ class ChartsManager {
                             font-weight="800"
                             fill="#0b5640"
                             font-family="Prompt, Arial, sans-serif">
-                            ${fmtPct(pctAvance)}%
+                            ${fmtPct(pctAvance)} %
                         </text>
 
                         <!-- Subtítulo -->
@@ -431,7 +431,7 @@ class ChartsManager {
 
                 <div class="prow-bar-area">
                     <div class="prow-bar-header">
-                        <div class="prow-bar-pct">${fmtPct(pctKm)}<span style="font-size:14px;font-weight:600;opacity:0.75;">%</span></div>
+                        <div class="prow-bar-pct">${fmtPct(pctKm)}<span style="font-size:14px;font-weight:600;opacity:0.75;"> %</span></div>
                         <div class="prow-bar-pct-label">de km contractuales intervenidos</div>
                     </div>
                     <div class="prow-bar-track">
@@ -512,7 +512,7 @@ class ChartsManager {
                 const currentPct = fromPct + (targetPct - fromPct) * ease;
                 // Mostrar avance físico: usar el mismo ratio que el arco respecto al total
                 const arcPct = (1 - (fromOffset + (targetOffset - fromOffset) * ease) / CIRC) * 100;
-                pctText.textContent = arcPct.toFixed(1) + '%';
+                pctText.textContent = arcPct.toFixed(0) + ' %';
             }
 
             if (t < 1) requestAnimationFrame(tick);

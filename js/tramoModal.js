@@ -52,24 +52,17 @@ class TramoModal {
 
             <!-- Encabezado del tramo -->
             <div class="tmd-head tmd-anim" style="--d:0ms">
-                <div class="tmd-head-badge">
-                    <span class="tmd-subr-label">${d.SUBREGION || '—'}</span>
-                </div>
+
                 <h2 class="tmd-nombre">${circuitoName}</h2>
                 ${d.CODIGO_VIA ? `<p class="tmd-codigo">${d.CODIGO_VIA}</p>` : ''}
-                <div class="tmd-mpios-row">
-                    <span class="tmd-mpio-chip">
-                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                        ${d.MPIO_NOMBRE || '—'}
-                    </span>
-                </div>
+
             </div>
 
             <!-- Avance de obra -->
             <div class="tmd-avance-block tmd-anim" style="--d:60ms">
                 <div class="tmd-avance-row">
                     <span class="tmd-section-label">Avance de obra</span>
-                    <span class="tmd-avance-pct" style="color:${avColor}">${avancePct.toFixed(1)}%</span>
+                    <span class="tmd-avance-pct" style="color:${avColor}">${avancePct.toFixed(0)} %</span>
                 </div>
                 <div class="tmd-prog-track">
                     <div class="tmd-prog-fill" id="tmd-prog-fill"

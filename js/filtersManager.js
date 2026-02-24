@@ -69,7 +69,7 @@ class FiltersManager {
         header.innerHTML = `
             <div class="header-content">
                 <div class="header-brand">
-                    <img class="logo" src="logo/Logos Gobernación-04.png" alt="" style="height:50px;width:auto;object-fit:contain;flex-shrink:0;">
+                    <img class="logo" src="logo/logo_gobernacion.png" alt="" style="height:100px;width:auto;object-fit:contain;flex-shrink:0;">
                     <div>
                         <div class="header-brand-main">PAVIMENTACIÓN VIAL</div>
                         <div class="header-brand-sub">Secretaría de Infraestructura Física</div>
@@ -153,7 +153,7 @@ class FiltersManager {
         const style = document.createElement('style');
         style.id = styleId;
         style.textContent = `
-            .header { padding:12px 20px !important; height:60px !important; min-height:60px; }
+            .header { padding:12px 20px !important; height:100px !important; min-height:100px; }
             .header-brand { display:flex; flex-direction:row; align-items:center; justify-content:flex-start; gap:10px; flex-shrink:0; }
             .header-brand-main { font-size:18px; font-weight:800; color:#ffffff; letter-spacing:1.5px; text-transform:uppercase; line-height:1.1; font-family:'Prompt',Arial,sans-serif; }
             .header-brand-sub { font-size:10px; font-weight:500; color:rgba(58,249,162,0.85); letter-spacing:0.8px; text-transform:uppercase; font-family:'Prompt',Arial,sans-serif; }

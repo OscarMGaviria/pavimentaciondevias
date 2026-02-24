@@ -1150,5 +1150,4 @@ class CardsManager {
     }
 }
 
-
 window.CardsManager = CardsManager;

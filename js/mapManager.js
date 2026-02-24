@@ -36,16 +36,41 @@ class MapManager {
         // Coordenadas del centro geográfico de Antioquia ajustadas
         this.map = L.map('map', {
             center: [7.140596, -75.450447], // Centro personalizado
-            zoom: 7.75, // Zoom personalizado
+            zoom: 9, // Zoom personalizado
             zoomControl: false,
             attributionControl: false,
             scrollWheelZoom: true,
             wheelPxPerZoomLevel: 180,
-            zoomSnap: 0.25,         
-            zoomDelta: 0.25,
+            zoomSnap: 1,         
+            zoomDelta: 1,
             maxZoom: 18,
             minZoom: 6
         });
+
+
+
+        // ─────────────────────────────────────────────
+        // LOGO PNG – esquina inferior izquierda
+        // ─────────────────────────────────────────────
+        const logoControl = L.control({ position: 'bottomleft' });
+
+        logoControl.onAdd = function () {
+            const div = L.DomUtil.create('div', 'map-logo');
+            div.innerHTML = `
+                <img src="logo/Logos Gobernación-04.png"
+                    style="
+                        width:200px;
+                        height:auto;
+                        opacity:0.95;
+                        pointer-events:none;
+                    ">
+            `;
+            return div;
+        };
+
+        logoControl.addTo(this.map);
+
+
 
         // === PANES PARA CONTROLAR ORDEN DE CAPAS ===
         this.map.createPane('polygonsPane');
@@ -464,7 +489,7 @@ class MapManager {
 
     getFeatureStyle(feature) {
         if (feature.geometry.type === 'LineString' || feature.geometry.type === 'MultiLineString') {
-            return { color: '#FFD600', weight: 5, opacity: 0.95, lineCap: 'round', lineJoin: 'round' };
+            return { color: '#f6a000', weight: 5, opacity: 0.95, lineCap: 'round', lineJoin: 'round' };
         }
         return {};
     }
